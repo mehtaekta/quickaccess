@@ -1,4 +1,7 @@
 div(ng-controller="BookController") Book Page
 	ul
 		li(ng-repeat="book in books")
-			{{book.Title}} {{book.Author}} {{book.Desc}}
+			div#title {{book.Title}} 
+			div#author {{book.Author}} 
+			div#desc {{book.Desc}} 
+			div &nbsp;

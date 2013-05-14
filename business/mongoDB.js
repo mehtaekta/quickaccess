@@ -5,12 +5,12 @@
 
   databaseURL = 'keypoint';
 
-  collections = ["users", "movie"];
+  collections = ["user", "movie"];
 
   db = mongojs.connect(databaseURL, collections);
 
-  exports.find = function(criteria, callback) {
-    db.users.find(criteria, function(err, users) {
+  exports.find = function(collection, criteria, callback) {
+    db[collection].find(criteria, function(err, users) {
       // if (err || users.length <= 0) {
       //   console.log("No users found");
       // } else {
@@ -22,8 +22,8 @@
     });
   };
 
-  exports.add = function(data, callback) {
-    db.users.save(data, function(err, success) {
+  exports.add = function(collection, data, callback) {
+    db[collection].save(data, function(err, success) {
       // console.log('&&&&&&&&&&&&&&', success);
       // if (err || !success) {
       //   console.log("Unable to save data");

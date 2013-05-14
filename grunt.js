@@ -88,7 +88,7 @@ module.exports = function(grunt){
 		},
 	    watch: {
 		    less: {
-				files: 'less/**/*.less',
+				files: 'public/less/**/*.less',
 				tasks: ['less:dev']
 			},
 			concat: {

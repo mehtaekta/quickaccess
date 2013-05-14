@@ -5,18 +5,18 @@
 angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives']).
   config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
     $routeProvider
-    	.when('/view1', {
-    		templateUrl: 'partials/partial1', 
-    		controller: MyCtrl1
-    	})
-    	.when('/view2', {
-    		templateUrl: 'partials/partial2', 
-    		controller: MyCtrl2
-    	})
     	.when('/login', {
     		templateUrl: 'partials/login', 
-    		controller: MyCtrl2
+    		controller: BookController
     	})
+        .when('/auth/register', {
+            templateUrl: 'partials/register',
+            controller: RegisterController
+        })
+        .when('/auth/google', {
+            templateUrl: 'partials/login', 
+            controller: GoogleAuthController
+        })
         .when('/book', {
             templateUrl: 'partials/book', 
             controller: BookController
@@ -27,7 +27,7 @@ angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives'])
         })
     	.when('/', {
     		templateUrl: 'partials/home', 
-    		controller: MyCtrl2
+    		controller: BookController
     	})
     	.otherwise({redirectTo: '/'});
     $locationProvider.html5Mode(true);

@@ -1,0 +1,32 @@
+div(ng-controller='RegisterController')
+	form.form-horizontal(novalidation='true', class='css-form')
+		div.control-group
+			label.control-label(for='inputFirstName') First Name
+			div.controls
+				input#inputFirstName(type='text', required='required', placeholder='First Name', ng-model='user.firstName')
+		div.control-group
+			label.control-label(for='inputLastName') Last Name
+			div.controls
+				input#inputLastName(type='text', required='required', placeholder='Last Name', ng-model='user.lastName')
+		div.control-group
+			label.control-label(for='inputEmail') Email
+			div.controls
+				input#inputEmail(type='Email', required='required', placeholder='Email', ng-model='user.email')
+		div.control-group
+			label.control-label(for='inputDOB') Date Of Birth
+			div.controls
+				input#inputDOB(type='date', required='required', placeholder='Date Of Birth', ng-model='user.dob')
+		div.control-group
+			label.control-label(for='inputPassword') Password
+			div.controls
+				input#inputPassword(type='password', required='required', placeholder='Password', ng-model='user.password')
+		div.control-group
+			label.control-label(for='inputConfirmedPassword') Confirmed Password
+			div.controls
+				input#inputConfirmedPassword(type='password', required='required', placeholder='Confirmed Password')
+		div.control-group
+			div.controls
+				label.checkbox 
+					input#inputTnC(type='checkbox', required='required') 
+					| I accept terms and conditions.
+				button.btn.btn-primary(type='submit', ng-click='registerUser()') Register

@@ -7384,6 +7384,10 @@ a.badge:hover {
     overflow: visible !important;
   }
 }
-.test {
-  color: red;
+.center {
+  text-align: center;
+}
+.span10 .lrpadding {
+  margin-left: 20px;
+  margin-right: 20px;
 }

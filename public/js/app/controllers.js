@@ -12,13 +12,6 @@ function AppCtrl($scope, $http) {
   });
 }
 
-function MyCtrl1() {}
-MyCtrl1.$inject = [];
-
-
-function MyCtrl2() {}
-MyCtrl2.$inject = [];
-
 function BookController($scope, $http){
 	var books =[{Title:'Book1', Author:'Author1', Desc:'Desc1'}
 	,{Title:'Book2', Author:'Author2', Desc:'Desc2'}
@@ -37,11 +30,34 @@ function MovieController($scope, $http){
 	$scope.movies = movies;
 }
 
-function AuthController($scope, $http){
-	$scope.googleAuthenticate = function(){
-		$http({method: 'GET', url: '/auth/google'})
-			.success(function(data, status, headers, config){
-				debugger;
-			})
-	}
+function RegisterController($scope, $http){
+	$scope.registerUser = function(){
+		console.log('data', $scope.user);
+		$http({
+		    method: 'POST',
+		    url: 'api/registerUser',
+		    data: $scope.user,
+		    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+		})
+	};
+
+	$scope.user = {
+		firstName: 'Ekta',
+		lastName: 'Mehta',
+		email: 'mehta.ekta@gmail.com',
+		dob: '11/21/1980',
+		password: '',
+	};
 }
+
+function AuthController($scope, $http){
+}
+
+function GoogleAuthController($scope, $http){
+	debugger;
+	$http({method: 'GET', url: '/auth/google'})
+		.success(function(data, status, headers, config){
+			debugger;
+		})
+}
+

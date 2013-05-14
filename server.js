@@ -10,6 +10,7 @@ var express = require('express'),
   authenticateRequest = require('./middleware/authenticateRequest');
   routes = require('./routes'),
   api = require('./routes/api');
+  helper = require('./business/helper');
 
 var app = module.exports = express();
 
@@ -42,6 +43,8 @@ app.get('/partials/:name', routes.partials);
 // JSON API
 
 app.get('/api/name', api.name);
+app.post('/api/registerUser', api.registerUser);
+
 
 // redirect all others to the index (HTML5 history)
 app.get('*', routes.index);

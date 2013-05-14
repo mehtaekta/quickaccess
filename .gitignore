@@ -1,1 +1,4 @@
 node_modules
+npm-debug.log
+app-script.js
+vendor-script.js

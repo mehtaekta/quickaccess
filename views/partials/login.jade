@@ -14,4 +14,5 @@ form.form-horizontal(ng-controller="AuthController")
             | Remember me
           button.btn.btn-primary(type='submit') Sign in 
           span &nbsp;
-          a.btn.btn-primary(href='#', prevent-Default, ng-click="googleAuthenticate();") Login Using Google
+          a.btn.btn-primary(href='/auth/register') Register
+          a.btn.btn-primary(href='/auth/google', style='display:none;') Login Using Google

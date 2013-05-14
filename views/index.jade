@@ -29,7 +29,9 @@ block body
             ul.nav.pull-right
               li
                 a(href='signout') logout
-    div#main(ng-view='')
+    div.row
+      div.span10
+        div.lrpadding(ng-view='')
 
 
   script(src='js/vendor-script.js')
