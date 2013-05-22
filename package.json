@@ -1,6 +1,7 @@
 {
    "name": "keypoint"
   ,"description": "Key Point"
+  ,"repository":""
   ,"version": "0.0.1"
   ,"private": true
   ,"main": "server.js"
@@ -15,16 +16,13 @@
     "grunt-contrib-less": "0.3.x",
     "grunt-reload": "0.2.x",
     "grunt-jslint": "0.2.x",
-    "grunt-shell":"*",
-    "grunt-exec":"*",
     "mongojs": "0.4.x",
     "supervisor":"*",
     "everyauth":"*",
     "node-inspector":"git://github.com/dannycoates/node-inspector.git#master"    
   }
   ,"scripts": { 
-    "prestart": "start /min node ./node_modules/grunt/bin/grunt && start /min node ./node_modules/node-inspector/bin/inspector.js",
-    "start": "supervisor node --debug server.js",
-    "stop": "taskkill -f /IM node.exe"
+    "prestart": "node ./node_modules/grunt/bin/grunt &",
+    "start": "supervisor node server.js"
   }
 }
