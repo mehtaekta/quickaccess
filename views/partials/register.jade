@@ -1,5 +1,6 @@
 div(ng-controller='RegisterController')
-	form.form-horizontal(novalidation='true', class='css-form')
+	form.form-horizontal(novalidation='true', class='css-form', ng-submit="registerUser('api/registerUser')")
+		input#nextAction(type='hidden', name='nextAction', ng-model='nextAction')
 		div.control-group
 			label.control-label(for='inputFirstName') First Name
 			div.controls
@@ -29,4 +30,4 @@ div(ng-controller='RegisterController')
 				label.checkbox 
 					input#inputTnC(type='checkbox', required='required') 
 					| I accept terms and conditions.
-				button.btn.btn-primary(type='submit', ng-click='registerUser()') Register
+				button.btn.btn-primary(type='submit') Register

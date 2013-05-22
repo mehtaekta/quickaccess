@@ -36,5 +36,11 @@ http://docs.mongodb.org/manual/tutorial/install-mongodb-on-windows/
 Chrome server side logging
 https://npmjs.org/package/express-chrome-
 
+net start MongoDB
+net stop MongoDB
+Connect to MongoDB using the mongo.exe shell. Open another Command Prompt and issue the following command:
+
+C:\mongodb\bin\mongo.exe
+
 use keypoint
 db.user.find()

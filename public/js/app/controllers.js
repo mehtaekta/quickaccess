@@ -1,7 +1,17 @@
 'use strict';
 
+function ajaxReq($scope, $http, $window){
+	// nextAction = $scope.nextAction;
+	$http.post($scope.action, $scope.data)
+	.success(function(data, status, headers, config) {
+	    $scope.data = data;
+	    // console.log('scope data', data);
+	    $window.location.href = $scope.nextAction;
+	}).error(function(data, status, headers, config) {
+	    $scope.status = status;
+	});
+}
 /* Controllers */
-
 function AppCtrl($scope, $http) {
   $http({method: 'GET', url: '/api/name'}).
   success(function(data, status, headers, config) {
@@ -10,6 +20,15 @@ function AppCtrl($scope, $http) {
   error(function(data, status, headers, config) {
     $scope.name = 'Error!'
   });
+}
+
+function AuthController($scope, $http, $window) {
+	$scope.login = function(action){
+		$scope.action = action;
+		$scope.data = $scope.user;
+		ajaxReq($scope, $http, $window);
+	}
+	$scope.nextAction = '/';
 }
 
 function BookController($scope, $http){
@@ -30,15 +49,20 @@ function MovieController($scope, $http){
 	$scope.movies = movies;
 }
 
-function RegisterController($scope, $http){
+function RegisterController($scope, $http, $window){
 	$scope.registerUser = function(){
-		console.log('data', $scope.user);
-		$http({
-		    method: 'POST',
-		    url: 'api/registerUser',
-		    data: $scope.user,
-		    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-		})
+		$scope.action = 'api/registerUser';
+		$scope.data = $scope.user;
+		ajaxReq($scope, $http, $window);
+		// console.log('data', $scope.user);		
+		// $http.post('api/registerUser', $scope.user)
+		// .success(function(data, status, headers, config) {
+		//     $scope.data = data;
+		//     // console.log('scope data', data);
+		//     $window.location.href = data.nextAction;
+		// }).error(function(data, status, headers, config) {
+		//     $scope.status = status;
+		// });
 	};
 
 	$scope.user = {
@@ -46,11 +70,9 @@ function RegisterController($scope, $http){
 		lastName: 'Mehta',
 		email: 'mehta.ekta@gmail.com',
 		dob: '11/21/1980',
-		password: '',
+		password: ''
 	};
-}
-
-function AuthController($scope, $http){
+	$scope.nextAction = '/auth/complete';
 }
 
 function GoogleAuthController($scope, $http){
