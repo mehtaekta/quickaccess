@@ -23,6 +23,7 @@
   }
   ,"scripts": { 
     "prestart": "node ./node_modules/grunt/bin/grunt &",
-    "start": "supervisor node server.js"
+    "start": "supervisor node server.js",
+    "stop": "killall -9 node"
   }
 }

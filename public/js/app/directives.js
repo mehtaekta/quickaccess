@@ -16,3 +16,23 @@ angular.module('myApp.directives', [])
 		    });
 		}
 	})
+	// .directive('UserName', function() {
+	// 	return function(scope, element, attrs) {
+	// 	    var keypoint_auth = $.cookie('keypoint_auth');
+	// 	    if(!_.isUndefined(keypoint_auth)){
+	// 			element.show();
+	// 	    } else {
+	// 	    	element.text('');
+	// 	    }
+	// 	}
+	// })
+	.directive('authOnlyVisible', function() {
+		return function(scope, element, attrs) {
+		    var keypoint_auth = $.cookie('keypoint_auth');
+		    if(!_.isUndefined(keypoint_auth)){
+				element.show();
+		    } else {
+		    	element.hide();
+		    }
+		}
+	})

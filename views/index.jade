@@ -4,7 +4,8 @@ block body
   div.container(ng-controller='AppCtrl')
     div#header
       img(src='/img/key-point.jpg',alt='Key Point',title='Key Point')
-      div(class="pull-right") Ekta Mehta
+      div(class="pull-right")
+        span#UserName(ng-UserName)
     div.navbar.navbar-inverse
       div.navbar-inner
         div.container
@@ -13,7 +14,7 @@ block body
             span.icon-bar
             span.icon-bar
           div.nav-collapse.collapse.navbar-inverse-collapse
-            ul.nav
+            ul.nav(ng-authOnlyVisible)
               li.active
                 a(href='home') Home
               li
@@ -27,7 +28,7 @@ block body
               li
                 a(href='#') Contact
             ul.nav.pull-right
-              li
+              li#lnkLogOut
                 a(href='signout') logout
     div.row
       div.span10

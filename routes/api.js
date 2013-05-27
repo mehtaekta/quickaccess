@@ -14,7 +14,7 @@ exports.GoogleAuth = function(req, res) {
 }
 
 exports.registerUser = function (req, res, next) {
-  var data = req.body;
+  // var data = req.body;
   console.log('data', data, mongoDB);
   mongoDB.find('user', {email: data.email}, function(err, result){
     if(err || result.length>0){
@@ -37,13 +37,14 @@ exports.login = function (req, res, next) {
   var data = req.body;
   var remember = data.remember;
   delete data.remember;
-  console.log('data', data);
+  // console.log('data', data);
   mongoDB.find('user', data, function(err, result){
       if(err || result.length <= 0)
         next(err);
       else {
-        console.log('result', result);
-        res.cookie('keypoint_auth', result[0].email)
+        console.log('result', result[0]);
+        res.cookie('keypoint_auth', JSON.stringify(result[0]), {path:'/'});
+        req.session.user = result[0];
         res.json(result, 200);
       }
   });  

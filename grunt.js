@@ -44,7 +44,8 @@ module.exports = function(grunt){
 						"public/js/lib/bootstrap/bootstrap-dropdown.js",
 						"public/js/lib/bootstrap/bootstrap-alert.js",
 				      	'public/js/lib/moment*.js', 		
-				      	'public/js/lib/angular/angular.js'
+				      	'public/js/lib/angular/angular.js',
+				      	'public/js/lib/jquery-cookie.js'
 						],
 				dest: 'public/js/vendor-script.js'
 			},

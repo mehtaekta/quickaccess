@@ -19,6 +19,8 @@ app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
   app.use(express.bodyParser());
+  app.use(express.cookieParser());
+  app.use(express.cookieSession({secret:'keypoint'}))
   app.use(express.methodOverride());
   app.use(express.static(__dirname + '/public'));
   app.use(everyauth.middleware());
@@ -47,6 +49,14 @@ app.post('/api/login', api.login);
 
 // redirect all other request to the index (HTML5 history)
 app.get('*', routes.index);
+
+// process.on('uncaughtException', function(err) {
+//   process.exit();
+// });
+
+// process.on('SIGTERM', function(err) {
+//   process.exit();
+// });
 
 // Start server
 app.listen(3000, function(){

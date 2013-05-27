@@ -2,10 +2,14 @@
 
 function ajaxReq($scope, $http, $window){
 	// nextAction = $scope.nextAction;
-	debugger;
 	$http.post($scope.action, $scope.data)
 	.success(function(data, status, headers, config) {
 	    $scope.data = data;
+	    // var keypoint_auth = $.cookie('keypoint_auth');
+	    // if(!_.isUndefined(keypoint_auth)){
+	    // 	angular.element('#UserName').text(keypoint_auth.firstName + ' M ' + keypoint_auth.lastName);
+	    // 	angular.element('#lnkLogOut').show();
+	    // }
 	    // console.log('scope data', data);
 	    $window.location.href = $scope.nextAction;
 	}).error(function(data, status, headers, config) {
@@ -13,14 +17,20 @@ function ajaxReq($scope, $http, $window){
 	});
 }
 /* Controllers */
-function AppCtrl($scope, $http) {
-  $http({method: 'GET', url: '/api/name'}).
-  success(function(data, status, headers, config) {
-    $scope.name = data.name;
-  }).
-  error(function(data, status, headers, config) {
-    $scope.name = 'Error!'
-  });
+function AppCtrl($scope, $http, $window) {
+	var keypoint_auth = $.cookie('keypoint_auth');
+    if(!_.isUndefined(keypoint_auth)){
+    	var userInfo = JSON.parse(keypoint_auth);
+    	angular.element('#UserName').text(userInfo.firstName + ' M ' + userInfo.lastName);
+    	// angular.element('#lnkLogOut').show();
+    }
+  // $http({method: 'GET', url: '/api/name'}).
+  // success(function(data, status, headers, config) {
+  //   $scope.name = data.name;
+  // }).
+  // error(function(data, status, headers, config) {
+  //   $scope.name = 'Error!'
+  // });
 }
 
 function AuthController($scope, $http, $window) {
