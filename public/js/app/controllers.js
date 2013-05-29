@@ -5,12 +5,6 @@ function ajaxReq($scope, $http, $window){
 	$http.post($scope.action, $scope.data)
 	.success(function(data, status, headers, config) {
 	    $scope.data = data;
-	    // var keypoint_auth = $.cookie('keypoint_auth');
-	    // if(!_.isUndefined(keypoint_auth)){
-	    // 	angular.element('#UserName').text(keypoint_auth.firstName + ' M ' + keypoint_auth.lastName);
-	    // 	angular.element('#lnkLogOut').show();
-	    // }
-	    // console.log('scope data', data);
 	    $window.location.href = $scope.nextAction;
 	}).error(function(data, status, headers, config) {
 	    $scope.status = status;
@@ -22,15 +16,12 @@ function AppCtrl($scope, $http, $window) {
     if(!_.isUndefined(keypoint_auth)){
     	var userInfo = JSON.parse(keypoint_auth);
     	angular.element('#UserName').text(userInfo.firstName + ' M ' + userInfo.lastName);
-    	// angular.element('#lnkLogOut').show();
     }
-  // $http({method: 'GET', url: '/api/name'}).
-  // success(function(data, status, headers, config) {
-  //   $scope.name = data.name;
-  // }).
-  // error(function(data, status, headers, config) {
-  //   $scope.name = 'Error!'
-  // });
+
+    $scope.logout = function(){
+		$.removeCookie('keypoint_auth', {path:'/'});
+		$window.location.href = '/';
+	}
 }
 
 function AuthController($scope, $http, $window) {
@@ -39,6 +30,7 @@ function AuthController($scope, $http, $window) {
 		$scope.data = $scope.user;
 		ajaxReq($scope, $http, $window);
 	}
+
 	$scope.nextAction = '/home';
 }
 

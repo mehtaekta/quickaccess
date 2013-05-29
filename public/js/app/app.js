@@ -20,6 +20,10 @@ angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives'])
             templateUrl: 'partials/login', 
             controller: GoogleAuthController
         })
+        // .when('/logout', {
+        //     templateUrl: 'partial/login', 
+        //     controller: LogoutController
+        // })
         .when('/book', {
             templateUrl: 'partials/book', 
             controller: BookController

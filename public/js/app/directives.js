@@ -2,7 +2,6 @@
 
 /* Directives */
 
-
 angular.module('myApp.directives', [])
 	.directive('appVersion', ['version', function(version) {
 		return function(scope, elm, attrs) {
@@ -16,17 +15,7 @@ angular.module('myApp.directives', [])
 		    });
 		}
 	})
-	// .directive('UserName', function() {
-	// 	return function(scope, element, attrs) {
-	// 	    var keypoint_auth = $.cookie('keypoint_auth');
-	// 	    if(!_.isUndefined(keypoint_auth)){
-	// 			element.show();
-	// 	    } else {
-	// 	    	element.text('');
-	// 	    }
-	// 	}
-	// })
-	.directive('authOnlyVisible', function() {
+	.directive('authVisible', function() {
 		return function(scope, element, attrs) {
 		    var keypoint_auth = $.cookie('keypoint_auth');
 		    if(!_.isUndefined(keypoint_auth)){
@@ -35,4 +24,4 @@ angular.module('myApp.directives', [])
 		    	element.hide();
 		    }
 		}
-	})
+	});
