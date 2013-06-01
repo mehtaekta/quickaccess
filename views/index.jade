@@ -24,14 +24,14 @@ block body
               li(auth-Visible)
                 a(href='#') Products
               li
-                a(href='#') About Us
+                a(href='/aboutus') About Us
               li
-                a(href='#') Contact
+                a(href='/contactus') Contact
             ul.nav.pull-right(auth-Visible)
               li#lnkLogOut
                 a(ng-click="logout()", prevent-Default) logout
-    div.row
-      div.span10
+    div
+      div
         div.lrpadding(ng-view='')
 
 

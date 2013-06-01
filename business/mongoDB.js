@@ -6,14 +6,14 @@
   // databaseURL = 'mongodb://emehta:emehta@localhost:27017/keypoint';
     databaseURL = 'keypoint';
 
-  collections = ["user"];
+  collections = ["user", "book"];
 
   var db = mongojs(databaseURL, collections);
   // var db = mongojs('example.com/mydb', ['mycollection']);
   // console.log('mongo db connection',db)
 
   exports.find = function(collection, criteria, callback) {
-    db.user.find(criteria, function(err, users) {
+    db[collection].find(criteria, function(err, users) {
 
       // console.log('&&&&&&&&&&&&&& find', callback, err, users);
       // if (err || users.length <= 0) {
@@ -28,7 +28,7 @@
   };
 
   exports.add = function(collection, data, callback) {
-    db.user.save(data, function(err, success) {
+    db[collection].save(data, function(err, success) {
       // console.log('&&&&&&&&&&&&&& add', err, success);
       // if (err || !success) {
       //   console.log("Unable to save data");

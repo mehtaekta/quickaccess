@@ -1,7 +1,23 @@
 'use strict';
 
-function ajaxReq($scope, $http, $window){
+function ajaxGetReq($scope, $http, $window, callback){
 	// nextAction = $scope.nextAction;
+	// console.log('ajax scope data', $scope.action, $scope.data);
+	$http.get($scope.action, $scope.data)
+	.success(function(data, status, headers, config) {
+		// console.log('success', data);
+	    _.extend($scope, data);
+	    return callback();
+	    // $window.location.href = $scope.nextAction;
+	}).error(function(data, status, headers, config) {
+		// console.log('err', status);
+	    $scope.status = status;
+	});
+}
+
+function ajaxPostReq($scope, $http, $window){
+	// nextAction = $scope.nextAction;
+	console.log('ajax scope data', $scope.action, $scope.data);
 	$http.post($scope.action, $scope.data)
 	.success(function(data, status, headers, config) {
 	    $scope.data = data;
@@ -28,19 +44,34 @@ function AuthController($scope, $http, $window) {
 	$scope.login = function(action){
 		$scope.action = action;
 		$scope.data = $scope.user;
-		ajaxReq($scope, $http, $window);
+		ajaxPostReq($scope, $http, $window);
 	}
 
 	$scope.nextAction = '/home';
 }
 
-function BookController($scope, $http){
-	var books =[{Title:'Book1', Author:'Author1', Desc:'Desc1'}
-	,{Title:'Book2', Author:'Author2', Desc:'Desc2'}
-	,{Title:'Book3', Author:'Author3', Desc:'Desc3'}
-	,{Title:'Book4', Author:'Author4', Desc:'Desc4'}
-	];
-	$scope.books = books;
+function RecommendBookController($scope, $http, $window){
+	$scope.add = function(action) {
+		$scope.action = action;
+		$scope.data = $scope.book;
+		ajaxPostReq($scope, $http, $window);
+	}
+	$scope.book = {
+		title: "Book 1",
+		author: "abcd",
+		description: "abcd descr",
+		comment: "comment 1",
+		url:"http://www.amazon.com/High-Performance-Web-Sites-ebook/dp/B0028N4WHY/ref=sr_1_3?s=digital-text&ie=UTF8&qid=1369971936&sr=1-3&keywords=web+performance"
+	}
+	$scope.nextAction = '/auth/complete';
+}
+
+function BookController($scope, $http, $window){
+	// console.log($http);
+	$scope.action = '/api/books';
+	ajaxGetReq($scope, $http, $window, function(){
+		// console.log('scope data',$scope);
+	});
 }
 
 function MovieController($scope, $http){
@@ -53,10 +84,10 @@ function MovieController($scope, $http){
 }
 
 function RegisterController($scope, $http, $window){
-	$scope.registerUser = function(){
-		$scope.action = 'api/registerUser';
+	$scope.registerUser = function(action){
+		$scope.action = action;
 		$scope.data = $scope.user;
-		ajaxReq($scope, $http, $window);
+		ajaxPostReq($scope, $http, $window);
 	};
 
 	$scope.user = {

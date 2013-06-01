@@ -20,17 +20,25 @@ angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives'])
             templateUrl: 'partials/login', 
             controller: GoogleAuthController
         })
-        // .when('/logout', {
-        //     templateUrl: 'partial/login', 
-        //     controller: LogoutController
-        // })
         .when('/book', {
             templateUrl: 'partials/book', 
             controller: BookController
         })
+        .when('/book/recommend', {
+            templateUrl: 'partials/book_recommend', 
+            controller: RecommendBookController
+        })
         .when('/movie', {
             templateUrl: 'partials/movie', 
             controller: MovieController
+        })
+        .when('/aboutus', {
+            templateUrl: 'partials/aboutus', 
+            // controller: MovieController
+        })
+        .when('/contactus', {
+            templateUrl: 'partials/contactus', 
+            // controller: MovieController
         })
     	.when('/home', {
     		templateUrl: 'partials/home', 

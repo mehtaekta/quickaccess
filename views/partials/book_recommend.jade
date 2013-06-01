@@ -1,0 +1,27 @@
+//- div Recommend Book 
+form.form-horizontal(ng-controller="RecommendBookController", , ng-submit="add('api/book/add')")
+	input#nextAction(type='hidden', name='nextAction', ng-model='nextAction')
+	div.control-group
+		label.control-label(for='inputBookTitle') Title
+		div.controls
+			input#inputBookTitle(type='text', required='required', ng-model='book.title', placeholder='Title')
+	div.control-group
+		label.control-label(for='inputAuthor') Author
+		div.controls
+			input#inputAuthor(type='text', required='required', ng-model='book.author', placeholder='Author')
+	div.control-group
+		label.control-label(for='inputDescription') Description
+		div.controls
+			input#inputDescription(type='text', required='required', ng-model='book.description', placeholder='Short Description')
+	div.control-group
+		label.control-label(for='inputComments') Comments
+		div.controls
+			input#inputComments(type='text', required='required', ng-model='book.comment', placeholder='Comments')
+	div.control-group
+		label.control-label(for='inputUrl') Url
+		div.controls
+			input#inputUrl(type='text', required='required', ng-model='book.url', placeholder='Paste book url')
+	div.control-group
+		button.btn.btn-primary(type='submit') Save 
+		span &nbsp;
+		a.btn.btn-primary(href='/') Cancel

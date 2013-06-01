@@ -17,3 +17,8 @@
 //       else return callback(null, isPasswordMatch);
 //    });
 // };
+exports.AuthCookie = 'keypoint_auth';
+
+exports.getLoggedInUserInfo = function(req) {
+	return JSON.parse(req.cookies[this.AuthCookie]);
+}		

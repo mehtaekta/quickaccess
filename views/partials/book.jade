@@ -1,7 +1,13 @@
-div(ng-controller="BookController") Book Page
-	ul
-		li(ng-repeat="book in books")
-			div#title {{book.Title}} 
-			div#author {{book.Author}} 
-			div#desc {{book.Desc}} 
-			div &nbsp;
+div.lrpadding.well(ng-controller="BookController")
+	div.row
+		h3.span4 Books Shelf
+		div.span4.offset4
+			a.btn.btn-primary.pull-right(href='/book/recommend', class="") Recommend New Book
+	p
+		ul
+			li(ng-repeat="book in books")
+				a#title(href='{{book.url}}', target='_new') {{book.title}} 
+				div#author {{book.author}} 
+				div#desc {{book.description}} 
+				div#comment {{book.comment}} 
+				div &nbsp;
